@@ -83,13 +83,13 @@ export const JudgesSection = () => {
         >
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
+            className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
           >
             Meet Our Judges
           </motion.h2>
           <motion.p 
             variants={itemVariants}
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-xl text-gray-300 max-w-2xl mx-auto"
           >
             Industry experts who will evaluate your innovative solutions
           </motion.p>
@@ -100,11 +100,16 @@ export const JudgesSection = () => {
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              className="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow"
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="relative bg-gray-900 rounded-2xl p-6 text-center group"
             >
-              <feature.icon className="w-12 h-12 mx-auto mb-4 text-blue-600" />
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-[2px] rounded-2xl bg-gray-900" />
+              <div className="relative">
+                <feature.icon className="w-12 h-12 mx-auto mb-4 text-blue-400" />
+                <h3 className="text-xl font-semibold mb-2 text-gray-100">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -125,24 +130,29 @@ export const JudgesSection = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="bg-white rounded-2xl p-8 text-center h-full shadow-lg hover:shadow-xl transition-shadow"
+                  className="relative bg-gray-900 rounded-2xl p-8 text-center h-full group"
                 >
-                  <div className="relative w-40 h-40 mx-auto mb-8">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-xl opacity-30" />
-                    <img
-                      src={judge.image}
-                      alt={judge.name}
-                      className="relative w-full h-full rounded-full object-cover border-4 border-blue-100"
-                    />
-                  </div>
-                  <div className="space-y-4">
-                    <h3 className="text-3xl font-bold text-gray-800">{judge.name}</h3>
-                    <p className="text-xl text-blue-600 font-semibold">{judge.role}</p>
-                    <p className="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
-                      {judge.bio}
-                    </p>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-[2px] rounded-2xl bg-gray-900" />
+                  <div className="relative">
+                    <div className="relative w-40 h-40 mx-auto mb-8">
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-xl opacity-30" />
+                      <img
+                        src={judge.image}
+                        alt={judge.name}
+                        className="relative w-full h-full rounded-full object-cover border-4 border-blue-500/20"
+                      />
+                    </div>
+                    <div className="space-y-4">
+                      <h3 className="text-3xl font-bold text-gray-100">{judge.name}</h3>
+                      <p className="text-xl text-blue-400 font-semibold">{judge.role}</p>
+                      <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+                        {judge.bio}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               </SwiperSlide>
