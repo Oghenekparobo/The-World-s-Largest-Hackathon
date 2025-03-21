@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
+interface LoadingScreenProps {
+  onLoadingComplete: () => void;
+}
+
 const calculateTimeLeft = () => {
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(23, 59, 59, 999);
+  const now = new Date();
+  const friday = new Date();
   
-  const difference = tomorrow.getTime() - new Date().getTime();
+  // Set to next Friday at 23:59:59
+  const daysUntilFriday = (5 - now.getDay() + 7) % 7; // 5 is Friday
+  friday.setDate(now.getDate() + daysUntilFriday);
+  friday.setHours(23, 59, 59, 999);
+  
+  const difference = friday.getTime() - now.getTime();
   
   if (difference > 0) {
     return {
